@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Virtual Birthday Wishes</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .card {
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            text-align: center;
+            max-width: 400px;
+        }
+        h1 {
+            color: #ff4081;
+        }
+        .balloon {
+            font-size: 50px;
+            margin: 20px 0;
+        }
+        .message {
+            font-size: 18px;
+            line-height: 1.5;
+            margin-bottom: 20px;
+        }
+        .confetti {
+            position: fixed;
+            width: 10px;
+            height: 10px;
+            background-color: #f0f0f0;
+            position: absolute;
+            animation: confetti 5s ease-in-out infinite;
+        }
+        @keyframes confetti {
+            0% { transform: translateY(0) rotateZ(0); opacity: 1; }
+            100% { transform: translateY(1000px) rotateZ(720deg); opacity: 0; }
+        }
+        #timer {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 20px;
+            color: #4a4a4a;
+        }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <h1>Happy Birthday!</h1>
+        <div id="timer"></div>
+        <div class="balloon">🎈🎉🎂</div>
+        <p class="message">Wishing you a fantastic day filled with joy, laughter, and wonderful memories. May all your dreams and wishes come true!</p>
+        <p>With love,<br>Bossy</p>
+    </div>
+
+    <script>
+        function createConfetti() {
+            const confetti = document.createElement('div');
+            confetti.classList.add('confetti');
+            confetti.style.left = Math.random() * window.innerWidth + 'px';
+            confetti.style.backgroundColor = `hsl(${Math.random() * 360}, 100%, 50%)`;
+            document.body.appendChild(confetti);
+
+            setTimeout(() => {
+                confetti.remove();
+            }, 5000);
+        }
+
+        setInterval(createConfetti, 300);
+
+        // Timer functionality
+        function updateTimer() {
+            const now = new Date();
+            const birthday = new Date(2024, 8, 23); // September 23, 2024 (month is 0-indexed)
+
+            const timeLeft = birthday - now;
+
+            if (timeLeft < 0) {
+                document.getElementById('timer').innerHTML = "Happy Birthday! 🎉";
+                return;
+            }
+
+            const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
+
+            document.getElementById('timer').innerHTML = `Time until birthday: ${days}d ${hours}h ${minutes}m ${seconds}s`;
+        }
+
+        updateTimer();
+        setInterval(updateTimer, 1000);
+    </script>
+</body>
+</html>
+
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f0f0f0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+        overflow: hidden;
+    }
+
+    .card {
+        background-color: white;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        padding: 20px;
+        text-align: center;
+        max-width: 400px;
+        width: 100%;
+        position: relative;
+        transition: transform 0.3s ease;
+    }
+
+    .card:hover {
+        transform: scale(1.05);
+    }
+
+    h1 {
+        color: #ff4081;
+        margin-bottom: 10px;
+    }
+
+    #timer {
+        font-size: 1.2em;
+        margin-bottom: 15px;
+        color: #333;
+    }
+
+    .balloon {
+        font-size: 2em;
+        margin: 15px 0;
+        animation: float 3s ease-in-out infinite;
+    }
+
+    .message {
+        color: #555;
+        line-height: 1.6;
+    }
+
+    .confetti {
+        position: absolute;
+        width: 10px;
+        height: 10px;
+        background-color: #f0f0f0;
+        animation: fall 5s linear forwards;
+    }
+
+    @keyframes float {
+        0%, 100% { transform: translateY(0); }
+        50% { transform: translateY(-20px); }
+    }
+
+    @keyframes fall {
+        to {
+            transform: translateY(100vh) rotate(720deg);
+            opacity: 0;
+        }
+    }
+</style>
+
+<script>
+    function createConfetti() {
+        const confetti = document.createElement('div');
+        confetti.classList.add('confetti');
+        confetti.style.left = Math.random() * window.innerWidth + 'px';
+        confetti.style.backgroundColor = `hsl(${Math.random() * 360}, 100%, 50%)`;
+        document.body.appendChild(confetti);
+
+        setTimeout(() => {
+            confetti.remove();
+        }, 5000);
+    }
+
+    setInterval(createConfetti, 300);
+
+    function updateTimer() {
+        const now = new Date();
+        const birthday = new Date(2024, 8, 23); // September 23, 2024 (month is 0-indexed)
+
+        const timeLeft = birthday - now;
+
+        if (timeLeft < 0) {
+            document.getElementById('timer').innerHTML = "Happy Birthday! 🎉";
+            return;
+        }
+
+        const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
+
+        document.getElementById('timer').innerHTML = `Time until birthday: ${days}d ${hours}h ${minutes}m ${seconds}s`;
+    }
+
+    updateTimer();
+    setInterval(updateTimer, 1000);
+
+    // Add interactive elements
+    document.querySelector('.card').addEventListener('click', () => {
+        const colors = ['#ff4081', '#3f51b5', '#009688', '#ff5722', '#ffc107'];
+        const randomColor = colors[Math.floor(Math.random() * colors.length)];
+        document.querySelector('h1').style.color = randomColor;
+    });
+
+    document.querySelector('.balloon').addEventListener('mouseover', (e) => {
+        e.target.style.fontSize = '2.5em';
+        setTimeout(() => {
+            e.target.style.fontSize = '2em';
+        }, 300);
+    });
+
+    function createFireworks() {
+        const firework = document.createElement('div');
+        firework.classList.add('confetti');
+        firework.style.left = Math.random() * window.innerWidth + 'px';
+        firework.style.top = window.innerHeight + 'px';
+        firework.style.backgroundColor = `hsl(${Math.random() * 360}, 100%, 50%)`;
+        document.body.appendChild(firework);
+
+        setTimeout(() => {
+            firework.remove();
+        }, 5000);
+    }
+
+    setInterval(createFireworks, 500);
+</script>
+
+
